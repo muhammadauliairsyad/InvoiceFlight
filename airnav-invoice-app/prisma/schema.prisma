@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  OPERATOR
+  VIEWER
+}
+
+enum FlightType {
+  DOM
+  INT
+}
+
+enum AdvanceExtend {
+  ADVANCE
+  EXTEND
+}
+
+enum PaymentStatus {
+  UNPAID
+  PAID
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         Role     @default(OPERATOR)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  services     FlightService[]
+}
+
+model FlightService {
+  id                String         @id @default(cuid())
+  seqNo             Int            @unique
+  receiptNo         String         @unique
+  flightType        FlightType
+  advanceExtend     AdvanceExtend
+  airlineOperatorGh String
+  flightNumber      String
+  registration      String
+  aircraftType      String
+  departure         String
+  arrival           String
+  arrivalDate       DateTime
+  departureDate     DateTime
+  ataUtc            DateTime
+  atdUtc            DateTime
+  serviceStartUtc   DateTime
+  serviceEndUtc     DateTime
+  useApp            Boolean        @default(false)
+  useTwr            Boolean        @default(false)
+  useAfis           Boolean        @default(false)
+  picDinas          String
+  durationMinutes   Int
+  billableHours     Int
+  grossTotal        Int
+  ppn               Int
+  netTotal          Int
+  paymentStatus     PaymentStatus  @default(UNPAID)
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+
+  createdById       String
+  createdBy         User           @relation(fields: [createdById], references: [id])
+
+  @@index([ataUtc])
+  @@index([paymentStatus])
+}
+
+model ReceiptCounter {
+  id        String   @id @default(cuid())
+  prefix    String
+  code      Int
+  year      Int
+  month     Int
+  current   Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  @@unique([prefix, code, year, month])
+}
