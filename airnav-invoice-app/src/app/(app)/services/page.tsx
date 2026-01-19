@@ -40,6 +40,10 @@ export default function ServicesPage() {
             <Link className="rounded bg-blue-600 px-3 py-2 text-sm text-white" href="/services/new">
               Input Baru
             </Link>
+          <h2 className="text-lg font-semibold">Rekap Layanan</h2>
+          <div className="flex gap-2">
+            <button className="rounded border px-3 py-2 text-sm">Export Input CSV</button>
+            <button className="rounded border px-3 py-2 text-sm">Export Output CSV</button>
           </div>
         </div>
         <ServicesTable rows={mockRows} />

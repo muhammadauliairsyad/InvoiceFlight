@@ -50,6 +50,13 @@ export default function ImportPage() {
           <pre className="rounded border bg-slate-50 p-4 text-xs text-slate-700">{preview}</pre>
         ) : null}
       </div>
+import AppShell from "@/components/layout/AppShell";
+import ImportCsvWizard from "@/components/services/ImportCsvWizard";
+
+export default function ImportPage() {
+  return (
+    <AppShell>
+      <ImportCsvWizard />
     </AppShell>
   );
 }

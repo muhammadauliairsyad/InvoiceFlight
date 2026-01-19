@@ -11,6 +11,9 @@ export default function PdfActions() {
       <a className="rounded border px-4 py-2" href="#">
         View Combined
       </a>
+      <button className="rounded border px-4 py-2">View Receipt</button>
+      <button className="rounded border px-4 py-2">View Breakdown</button>
+      <button className="rounded border px-4 py-2">View Combined</button>
     </div>
   );
 }
