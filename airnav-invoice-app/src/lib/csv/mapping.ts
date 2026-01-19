@@ -1,0 +1,21 @@
+export const CSV_HEADER_ALIASES: Record<string, string> = {
+  airline_operator_gh: "airlineOperatorGh",
+  airline: "airlineOperatorGh",
+  flight_type: "flightType",
+  flight_number: "flightNumber",
+  registration: "registration",
+  aircraft_type: "aircraftType",
+  departure: "departure",
+  arrival: "arrival",
+  arrival_date: "arrivalDate",
+  departure_date: "departureDate",
+  ata_utc: "ataUtc",
+  atd_utc: "atdUtc",
+  service_start_utc: "serviceStartUtc",
+  service_end_utc: "serviceEndUtc",
+  advance_extend: "advanceExtend",
+  unit_app: "useApp",
+  unit_twr: "useTwr",
+  unit_afis: "useAfis",
+  pic_dinas: "picDinas"
+};

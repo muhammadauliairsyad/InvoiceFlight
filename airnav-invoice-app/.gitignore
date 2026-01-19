@@ -1,0 +1,6 @@
+node_modules/
+.next/
+.env
+.env.local
+storage/pdf/**
+storage/imports/csv/**
