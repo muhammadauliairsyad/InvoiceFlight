@@ -9,5 +9,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
   }
 
+  const response = NextResponse.json({ user });
+  response.cookies.set("airnav_session", JSON.stringify({ id: user.id, role: user.role }), {
+    httpOnly: true,
+    sameSite: "lax",
+    path: "/"
+  });
+
+  return response;
   return NextResponse.json({ user });
 }

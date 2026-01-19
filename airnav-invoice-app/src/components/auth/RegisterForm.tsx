@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function LoginForm() {
+export default function RegisterForm() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -15,11 +15,12 @@ export default function LoginForm() {
 
     const formData = new FormData(event.currentTarget);
     const payload = {
+      name: String(formData.get("name") ?? ""),
       email: String(formData.get("email") ?? ""),
       password: String(formData.get("password") ?? "")
     };
 
-    const response = await fetch("/api/auth/login", {
+    const response = await fetch("/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
@@ -29,15 +30,19 @@ export default function LoginForm() {
 
     if (!response.ok) {
       const result = await response.json();
-      setError(result.error ?? "Login gagal.");
+      setError(result.error ?? "Registrasi gagal.");
       return;
     }
 
-    router.push("/dashboard");
+    router.push("/login");
   };
 
   return (
     <form className="space-y-4 rounded bg-white p-6 shadow" onSubmit={handleSubmit}>
+      <div>
+        <label className="block text-sm font-medium">Nama</label>
+        <input className="mt-1 w-full rounded border px-3 py-2" type="text" name="name" required />
+      </div>
       <div>
         <label className="block text-sm font-medium">Email</label>
         <input className="mt-1 w-full rounded border px-3 py-2" type="email" name="email" required />
@@ -48,24 +53,11 @@ export default function LoginForm() {
       </div>
       {error ? <p className="text-sm text-red-600">{error}</p> : null}
       <button
-        className="w-full rounded bg-slate-900 px-4 py-2 text-white disabled:opacity-60"
+        className="w-full rounded bg-blue-600 px-4 py-2 text-white disabled:opacity-60"
         type="submit"
         disabled={isSubmitting}
       >
-        {isSubmitting ? "Memproses..." : "Login"}
-export default function LoginForm() {
-  return (
-    <form className="space-y-4 rounded bg-white p-6 shadow">
-      <div>
-        <label className="block text-sm font-medium">Email</label>
-        <input className="mt-1 w-full rounded border px-3 py-2" type="email" name="email" />
-      </div>
-      <div>
-        <label className="block text-sm font-medium">Password</label>
-        <input className="mt-1 w-full rounded border px-3 py-2" type="password" name="password" />
-      </div>
-      <button className="w-full rounded bg-slate-900 px-4 py-2 text-white" type="submit">
-        Login
+        {isSubmitting ? "Memproses..." : "Daftar"}
       </button>
     </form>
   );

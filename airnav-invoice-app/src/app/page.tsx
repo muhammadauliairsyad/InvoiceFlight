@@ -13,6 +13,8 @@ export default function HomePage() {
           <Link className="rounded bg-slate-900 px-4 py-2 text-white" href="/login">
             Login
           </Link>
+          <Link className="rounded border border-slate-300 px-4 py-2" href="/register">
+            Registrasi
           <Link className="rounded border border-slate-300 px-4 py-2" href="/dashboard">
             Dashboard
           </Link>
