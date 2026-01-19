@@ -15,6 +15,8 @@ export default function HomePage() {
           </Link>
           <Link className="rounded border border-slate-300 px-4 py-2" href="/register">
             Registrasi
+          <Link className="rounded border border-slate-300 px-4 py-2" href="/dashboard">
+            Dashboard
           </Link>
         </div>
       </div>

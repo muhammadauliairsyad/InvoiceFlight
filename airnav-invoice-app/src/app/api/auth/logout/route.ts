@@ -4,4 +4,5 @@ export async function POST() {
   const response = NextResponse.json({ success: true });
   response.cookies.set("airnav_session", "", { path: "/", maxAge: 0 });
   return response;
+  return NextResponse.json({ success: true });
 }

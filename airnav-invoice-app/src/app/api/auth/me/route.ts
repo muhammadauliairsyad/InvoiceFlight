@@ -24,4 +24,7 @@ export async function GET(request: Request) {
   } catch (error) {
     return NextResponse.json({ user: null });
   }
+
+export async function GET() {
+  return NextResponse.json({ user: null });
 }
