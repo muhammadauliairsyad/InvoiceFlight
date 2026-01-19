@@ -1,0 +1,2 @@
+Placeholder for receipt_template.pdf.
+Replace this file with the official Lampiran 1 PDF template before generating receipts.
